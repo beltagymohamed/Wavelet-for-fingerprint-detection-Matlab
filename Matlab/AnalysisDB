@@ -1,0 +1,38 @@
+% Loop for reading data and abstract c vectors
+
+nameBegin='FBD/Train/train';
+nameEnd='.tif';
+
+im=zeros(300,300,13);
+img=zeros(300,300,13);
+
+% For 4, 'sym8'
+cv=zeros(13,107731);
+
+
+for i=1:1:2
+    name=[nameBegin num2str(i) nameEnd];
+    im(:,:,i)=imread(name);
+    img(:,:,i)=double(im(:,:,i));
+    [c,s]=wavedec2(img(:,:,i),4,'sym8');
+    cv(i,:)=c;
+    %plot(c);
+    %hold on;
+end
+
+im(:,:,11)=imread('FBD/Test/test1.tif');
+img(:,:,11)=double(im(:,:,11));
+[c,s]=wavedec2(img(:,:,11),4,'sym8');
+cv(11,:)=c;
+    
+    
+    im(:,:,12)=imread('FBD/Test/test3.tif');
+    img(:,:,12)=double(im(:,:,12));
+    [c,s]=wavedec2(img(:,:,12),4,'sym8');
+    cv(12,:)=c;
+    
+    im(:,:,13)=imread('FBD/Test/test8.tif');
+    img(:,:,13)=double(im(:,:,13));
+    [c,s]=wavedec2(img(:,:,13),4,'sym8');
+    cv(13,:)=c;
+    
